@@ -84,6 +84,7 @@ int			in_shadow(t_ray lightray, t_env *e, double t)
 	hit[PLANE] = &hitplane;
 	hit[I_CONE] = &hitcone;
 	hit[I_CYL] = &hitcylinder;
+	hit[DISK] = &hitdisk;
 	k = -1;
 	while (++k < e->nbs[3])
 		if (hit[e->item[k].item_type](lightray, e->item[k], &t))

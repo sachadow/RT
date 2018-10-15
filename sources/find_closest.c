@@ -42,6 +42,8 @@ int			find_closest_item(t_ray r, t_env *e, t_vec *newstart, int *curr)
 				*curr = i;
 			}
 	}
+  if (*curr < 0)
+    return (-1);
 	hit[e->item[*curr].item_type](r, e->item[*curr], &t);
 	*newstart = add(scale(t, r.dir), r.start);
 	return (e->item[*curr].item_type);

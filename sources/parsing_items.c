@@ -52,7 +52,7 @@ void	parsing_item(char **s, t_env *e, int *k)
 	t_item	co;
 
 	if (ft_strcmp(s[0], "CONE") && ft_strcmp(s[0], "CYLINDER") && ft_strcmp(s[0],
-				"SPHERE") && ft_strcmp(s[0], "PLANE"))
+				"SPHERE") && ft_strcmp(s[0], "PLANE") && ft_strcmp(s[0], "DISK"))
 		return ;
 //	if (table_len(s) != 13 && table_len(s) != 17 && table_len(s) != 21)
 //		ft_printerror("Invalid file");
@@ -71,6 +71,10 @@ void	parsing_item(char **s, t_env *e, int *k)
 	else if (!(ft_strcmp(s[0], "PLANE")))
 		co = newplane(newvec(ft_atoi(s[2] + 1), ft_atoi(s[3]), ft_atoi(s[4])),
 			ft_atoi(s[6]), ft_atoi(s[8]));
+	else if (!(ft_strcmp(s[0], "DISK")))
+		co = newdisk(newvec(ft_atoi(s[2] + 1), ft_atoi(s[3]), ft_atoi(s[4])),
+			newvec(ft_atoi(s[6] + 1), ft_atoi(s[7]), ft_atoi(s[8])),
+			ft_atoi(s[10]), ft_atoi(s[12]));
 	if (ft_strcmp(s[0], "SPHERE"))
 		co.dir = normalize(co.dir);
 	i = 0;

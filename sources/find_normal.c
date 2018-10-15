@@ -106,13 +106,7 @@ t_mat		find_material(int itemtype, int *curr, t_env *e)
 	m.reflection = 0;
 	m.specvalue = 0;
 	m.specpower = 0;
-	if (itemtype == SPHERE)
-		m = e->mat[e->item[*curr].mat];
-	else if (itemtype == PLANE)
-		m = e->mat[e->item[*curr].mat];
-	else if (itemtype == I_CYL)
-		m = e->mat[e->item[*curr].mat];
-	else if (itemtype == I_CONE)
-		m = e->mat[e->item[*curr].mat];
+  itemtype++;
+	m = e->mat[e->item[*curr].mat];
 	return (m);
 }

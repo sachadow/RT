@@ -57,9 +57,11 @@ int			ray_calc(t_env *e, t_work *w)
 	itemtype = find_closest_item(w->r, e, &newstart, &curr);
 	if (itemtype == -1)
 		return (0);
-	if (itemtype == PLANE && dotproduct(w->r.dir, e->item[curr].dir) > 0)
+	if ((itemtype == PLANE || itemtype == DISK)
+      && dotproduct(w->r.dir, e->item[curr].dir) > 0)
 		w->n = opposite(e->item[curr].dir);
-	else if (itemtype == PLANE && dotproduct(w->r.dir, e->item[curr].dir) < 0)
+	else if ((itemtype == DISK || itemtype == PLANE)
+      && dotproduct(w->r.dir, e->item[curr].dir) < 0)
 		w->n = e->item[curr].dir;
 	else
 		w->n = find_normal_vec_if_not_plane(itemtype, &curr, newstart, e);

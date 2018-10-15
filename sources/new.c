@@ -102,3 +102,17 @@ t_item	newcone(t_vec dir, t_vec center, double angle, int mat)
 	co.angle = angle;
 	return (co);
 }
+
+t_item	newdisk(t_vec dir, t_vec center, double radius, int mat)
+{
+	t_item	cy;
+
+	cy.item_type = DISK;
+	cy.dir = dir;
+	cy.center = center;
+	cy.radius = radius;
+	cy.mat = mat;
+	cy.d = 0;
+	cy.angle = 0;
+	return (cy);
+}
