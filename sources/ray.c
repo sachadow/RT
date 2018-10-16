@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 00:34:11 by squiquem          #+#    #+#             */
-/*   Updated: 2018/10/09 15:56:34 by sderet           ###   ########.fr       */
+/*   Updated: 2018/10/16 13:16:56 by sderet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,15 @@ int			ray_calc(t_env *e, t_work *w)
 	itemtype = find_closest_item(w->r, e, &newstart, &curr);
 	if (itemtype == -1)
 		return (0);
-	if ((itemtype == PLANE || itemtype == DISK)
+	if ((itemtype == PLANE)
       && dotproduct(w->r.dir, e->item[curr].dir) > 0)
 		w->n = opposite(e->item[curr].dir);
-	else if ((itemtype == DISK || itemtype == PLANE)
+	else if ((itemtype == PLANE)
       && dotproduct(w->r.dir, e->item[curr].dir) < 0)
 		w->n = e->item[curr].dir;
+	else if (itemtype == DISK)
+		w->n = (dotproduct(w->r.dir, e->item[curr].dir) < 0 ?
+				e->item[curr].dir : opposite(e->item[curr].dir));
 	else
 		w->n = find_normal_vec_if_not_plane(itemtype, &curr, newstart, e);
 	if (magnitude2(w->n) == 0)

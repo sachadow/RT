@@ -6,7 +6,7 @@
 /*   By: sderet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 17:08:38 by sderet            #+#    #+#             */
-/*   Updated: 2018/10/09 14:32:57 by sderet           ###   ########.fr       */
+/*   Updated: 2018/10/16 13:09:21 by sderet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ int		hitdisk(t_ray r, t_item d, double *t)
 	double	t0;
 	double	dist;
 
+	d.dir = normalize(d.dir);
+	r.dir = normalize(r.dir);
 	t0 = dotproduct(d.dir, r.dir);
-	if (t0 > -0.00001f && t0 < 0.00001f)
+	if (t0 > -0.0001 && t0 < 0.0001)
 		return (0);
 	relative = sub(d.center, r.start);
 	t0 = dotproduct(relative, d.dir) / t0;

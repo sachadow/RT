@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 00:34:11 by squiquem          #+#    #+#             */
-/*   Updated: 2018/10/09 14:13:32 by sderet           ###   ########.fr       */
+/*   Updated: 2018/10/16 13:23:06 by sderet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int			in_shadow(t_ray lightray, t_env *e, double t)
 	hit[DISK] = &hitdisk;
 	k = -1;
 	while (++k < e->nbs[3])
-		if (hit[e->item[k].item_type](lightray, e->item[k], &t))
+		if (hit[e->item[k].item_type](lightray, e->item[k], &t) && t > 0.001)
 			return (1);
 	return (0);
 }

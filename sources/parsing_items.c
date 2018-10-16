@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 15:02:34 by squiquem          #+#    #+#             */
-/*   Updated: 2018/10/09 15:21:02 by sderet           ###   ########.fr       */
+/*   Updated: 2018/10/16 12:07:50 by sderet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	parsing_light(char **s, t_env *e, int *k)
 
 void	parsing_item(char **s, t_env *e, int *k)
 {
-	int		i;
 	t_item	co;
 
 	if (ft_strcmp(s[0], "CONE") && ft_strcmp(s[0], "CYLINDER") && ft_strcmp(s[0],
@@ -77,17 +76,6 @@ void	parsing_item(char **s, t_env *e, int *k)
 			ft_atoi(s[10]), ft_atoi(s[12]));
 	if (ft_strcmp(s[0], "SPHERE"))
 		co.dir = normalize(co.dir);
-	i = 0;
-	while (table_len(s) - i > 13)
-	{
-		if (*(s[13 + i] + 1) == 'R')
-			co.dir = rotate(co.dir, ft_atoi(s[14 + i] + 1), ft_atoi(s[15 + i]),
-				ft_atoi(s[16 + i]));
-		if (*(s[13 + i] + 1) == 'T')
-			co.center = add(co.center, newvec(ft_atoi(s[14 + i] + 1),
-				ft_atoi(s[15 + i]), ft_atoi(s[16 + i])));
-		i += 4;
-	}
 	e->item[*k] = co;
 	(*k)++;
 }

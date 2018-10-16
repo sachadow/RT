@@ -19,4 +19,4 @@ CYLINDER {direction: (0, 1, 0), axispoint: (-900, 0, 900), radius: 150, mat: 2};
 PLANE {normale: (0, -1, 0), d: -500, mat: 1};
 PLANE {normale: (0, 0, 1), d: -1500, mat: 1};
 PLANE {normale: (0, 1, 0), d: -500, mat: 1};
-DISK {direction: (0, 0, -1), axispoint: (0, 300, -150), radius: 150, mat: 2};
+DISK {direction: (0, 0, 1), axispoint: (550, 500, 700), radius: 150, mat: 2};

@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 19:09:49 by squiquem          #+#    #+#             */
-/*   Updated: 2018/10/09 15:19:13 by sderet           ###   ########.fr       */
+/*   Updated: 2018/10/16 13:25:20 by sderet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct		s_item
 	int				item_type;
 	t_vec			center;
 	t_vec			dir;
+	t_vec			sizes;
 	double			d;
 	double			radius;
 	double			angle;
