@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 00:34:11 by squiquem          #+#    #+#             */
-/*   Updated: 2018/10/09 15:33:56 by sderet           ###   ########.fr       */
+/*   Updated: 2018/10/18 16:38:11 by sderet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			find_closest_item(t_ray r, t_env *e, t_vec *newstart, int *curr)
 {
 	double	t;
 	double	before;
-	int		(*hit[6])(t_ray, t_item, double *);
+	int		(*hit[10])(t_ray, t_item, double *);
 	int		i;
 
 	t = -1;
@@ -31,6 +31,7 @@ int			find_closest_item(t_ray r, t_env *e, t_vec *newstart, int *curr)
 	hit[I_CYL] = &hitcylinder;
 	hit[I_CONE] = &hitcone;
 	hit[DISK] = &hitdisk;
+	hit[F_CYL] = &hitfcylinder;
 	*curr = -1;
 	i = -1;
 	while (++i < e->nbs[3])

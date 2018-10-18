@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 19:09:49 by squiquem          #+#    #+#             */
-/*   Updated: 2018/10/16 13:25:20 by sderet           ###   ########.fr       */
+/*   Updated: 2018/10/18 17:28:12 by sderet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define I_CONE		3
 # define I_CYL		4
 # define DISK		5
+# define F_CYL		6
 
 typedef struct		s_sgmt
 {
@@ -83,50 +84,12 @@ typedef struct		s_item
 	int				item_type;
 	t_vec			center;
 	t_vec			dir;
-	t_vec			sizes;
 	double			d;
+	double			height;
 	double			radius;
 	double			angle;
 	int				mat;
 }					t_item;
-
-typedef struct		s_sph
-{
-	t_vec			center;
-	double			radius;
-	int				mat;
-}					t_sph;
-
-typedef struct		s_plane
-{
-	t_vec			dir;
-	double			d;
-	int				mat;
-}					t_plane;
-
-typedef struct		s_disk
-{
-	t_vec			center;
-	t_vec			dir;
-	double			radius;
-	int				mat;
-}					t_disk;
-
-typedef struct		s_cone
-{
-	t_vec			dir;
-	t_vec			center;
-	double			angle;
-	int				mat;
-}					t_cone;
-
-typedef struct		s_cyl
-{
-	t_vec			dir;
-	t_vec			center;
-	double			radius;
-	int				mat;
-}					t_cyl;
 
 typedef struct		s_work
 {
@@ -148,11 +111,6 @@ typedef struct		s_env
 	int				nbs[4];
 	t_cam			*cam;
 	t_item			*item;
-	t_sph			*sph;
-	t_plane			*plane;
-	t_cone			*cone;
-	t_cyl			*cylinder;
-	t_disk			*disk;
 	t_mat			*mat;
 	t_light			*light;
 	pthread_t		thr[NB_THR];
@@ -178,6 +136,7 @@ int					hitplane(t_ray r, t_item p, double *t);
 int					hitdisk(t_ray r, t_item p, double *t);
 int					hitsphere(t_ray r, t_item s, double *t);
 int					hitcylinder(t_ray r, t_item c, double *t);
+int					hitfcylinder(t_ray r, t_item c, double *t);
 int					hitcone(t_ray r, t_item c, double *t);
 int					calc_discr(double a, double b, double c, double *t);
 
@@ -243,6 +202,7 @@ t_color				newcolor(double r, double g, double b);
 t_item				newsph(t_vec center, double radius, int mat);
 t_item				newplane(t_vec dir, double d, int mat);
 t_item				newcyl(t_vec dir, t_vec center, double radius, int mat);
+t_item				newfcyl(t_vec dir, t_vec center, double radius, int mat, double height);
 t_item				newdisk(t_vec dir, t_vec center, double radius, int mat);
 t_item				newcone(t_vec dir, t_vec center, double angle, int mat);
 

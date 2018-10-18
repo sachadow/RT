@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 00:34:11 by squiquem          #+#    #+#             */
-/*   Updated: 2018/10/16 12:29:20 by sderet           ###   ########.fr       */
+/*   Updated: 2018/10/18 16:52:30 by sderet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_vec		find_normal_vec_if_not_plane(int itemtype, int *curr,
 	n = newvec(0, 0, 0);
 	if (itemtype == SPHERE)
 		n = sub(newstart, e->item[*curr].center);
-	else if (itemtype == I_CYL)
+	else if (itemtype == I_CYL || itemtype == F_CYL)
 		n = find_cylinder_normal(newstart, e->item[*curr]);
 	else if (itemtype == I_CONE)
 		n = find_cone_normal(newstart, e->item[*curr]);

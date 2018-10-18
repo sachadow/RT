@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 15:02:34 by squiquem          #+#    #+#             */
-/*   Updated: 2018/10/09 15:08:28 by sderet           ###   ########.fr       */
+/*   Updated: 2018/10/18 16:26:20 by sderet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ void	count_param(int nbs[6], char **s, int l)
 	else if (!ft_strcmp(s[0], "PLANE") && (l == 9 || l == 13 || l == 17))
 		nbs[3]++;
 	else if (!ft_strcmp(s[0], "CYLINDER") && (l == 13 || l == 17 || l == 21))
+		nbs[3]++;
+	else if (!ft_strcmp(s[0], "F_CYLINDER"))
 		nbs[3]++;
 	else if (!ft_strcmp(s[0], "CONE") && (l == 13 || l == 17 || l == 21))
 		nbs[3]++;

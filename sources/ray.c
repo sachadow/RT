@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 00:34:11 by squiquem          #+#    #+#             */
-/*   Updated: 2018/10/16 13:16:56 by sderet           ###   ########.fr       */
+/*   Updated: 2018/10/18 17:02:00 by sderet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,22 @@ int			ray_calc(t_env *e, t_work *w)
 	int		itemtype;
 	t_mat	currmat;
 	t_vec	newstart;
+	double	finite;
 
 	curr = -1;
 	itemtype = find_closest_item(w->r, e, &newstart, &curr);
 	if (itemtype == -1)
 		return (0);
+	finite = dotproduct(e->item[curr].dir, sub(newstart, e->item[curr].center))
+		/ magnitude2(e->item[curr].dir);
 	if ((itemtype == PLANE)
       && dotproduct(w->r.dir, e->item[curr].dir) > 0)
 		w->n = opposite(e->item[curr].dir);
 	else if ((itemtype == PLANE)
       && dotproduct(w->r.dir, e->item[curr].dir) < 0)
 		w->n = e->item[curr].dir;
-	else if (itemtype == DISK)
+	else if (itemtype == DISK || (itemtype == F_CYL && (finite <= 0 || finite >=
+					e->item[curr].height)))
 		w->n = (dotproduct(w->r.dir, e->item[curr].dir) < 0 ?
 				e->item[curr].dir : opposite(e->item[curr].dir));
 	else

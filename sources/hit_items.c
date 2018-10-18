@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 15:02:34 by squiquem          #+#    #+#             */
-/*   Updated: 2018/10/16 13:31:58 by sderet           ###   ########.fr       */
+/*   Updated: 2018/10/18 17:58:44 by sderet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,4 +134,28 @@ int		hitplane(t_ray r, t_item p, double *t)
 	}
 	else
 		return (0);
+}
+
+int		hitfcylinder(t_ray r, t_item cy, double *t)
+{
+	double	hit;
+	double	sign;
+	t_vec	intersection;
+
+	if (!hitcylinder(r, cy, &hit))
+		return (0);
+	intersection = add(r.start, scale(hit, r.dir));
+	sign = dotproduct(cy.dir, sub(intersection, cy.center)) /
+		magnitude2(cy.dir);
+	if (sign < 0)
+		return (hitdisk(r, newdisk(cy.dir, add(cy.center,
+						newvec(0.01, 0.01, 0.01)), cy.radius, cy.mat), t));
+	else if (sign > cy.height)
+		return (hitdisk(r, newdisk(cy.dir, add(cy.center, add(scale(cy.height,
+						cy.dir), newvec(0.01, 0.01, 0.01))), cy.radius, cy.mat), t));
+	else
+	{
+		*t = hit;
+		return (1);
+	}
 }

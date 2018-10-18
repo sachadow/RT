@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/25 15:19:32 by squiquem          #+#    #+#             */
-/*   Updated: 2018/10/16 13:47:38 by sderet           ###   ########.fr       */
+/*   Updated: 2018/10/18 16:25:27 by sderet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,21 @@ t_item	newcyl(t_vec dir, t_vec center, double radius, int mat)
 	cy.center = center;
 	cy.radius = radius;
 	cy.mat = mat;
+	cy.d = 0;
+	cy.angle = 0;
+	return (cy);
+}
+
+t_item	newfcyl(t_vec dir, t_vec center, double radius, int mat, double height)
+{
+	t_item	cy;
+
+	cy.item_type = F_CYL;
+	cy.dir = dir;
+	cy.center = center;
+	cy.radius = radius;
+	cy.mat = mat;
+	cy.height = height;
 	cy.d = 0;
 	cy.angle = 0;
 	return (cy);
